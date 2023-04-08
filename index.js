@@ -25,4 +25,5 @@ item[3].style.fontWeight='bold';
 var items=document.getElementsByClassName("list-group-item")
 undefined
 items[2].style.backgroundColor='green'
-'green'
+var item=document.getElementsByClassName("group-item")
+item[0].style.fontWeight='bold'
