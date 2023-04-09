@@ -60,7 +60,7 @@ var h1=document.querySelector('header h1');
 container.insertBefore(newDiv,h1);
 
 // var list=document.createElement('li')
-// //newDiv.className='hello'
+// newDiv.className='hello'
 // list.id='list'
 // list.setAttribute('title','Hello');
 // var newlist=document.createTextNode('Hello');
