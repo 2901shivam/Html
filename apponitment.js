@@ -19,7 +19,13 @@ button.addEventListener('click',function(){
     var list=document.getElementById('add-list');
     var childElement=document.createElement('li');
     childElement.textContent=take_name.value+'-'+email.value+'-'+phone.value
-    
-    list.appendChild(childElement);
+    var deleteButton=document.createElement('input');
+    deleteButton.type='button';
+    deleteButton.value='Delete';
+    deleteButton.addEventListener('click',function(){
+        list.removeChild(childElement);
+    });
+    childElement.appendChild(deleteButton);
+     list.appendChild(childElement);
 
 });
