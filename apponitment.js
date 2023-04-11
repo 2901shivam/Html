@@ -25,7 +25,21 @@ button.addEventListener('click',function(){
     deleteButton.addEventListener('click',function(){
         list.removeChild(childElement);
     });
+    var editButton=document.createElement('input');
+    editButton.type='button';
+    editButton.value='Edit';
+    editButton.addEventListener('click',function(){
+        //localStorage.removeItem(myobject.email);
+        list.removeChild(childElement);
+        take_name= myobject.name;
+        email=myobject.emial;
+        phone=myobject.phone;
+       
+       
+
+    });
     childElement.appendChild(deleteButton);
+    childElement.appendChild(editButton);
      list.appendChild(childElement);
 
 });
