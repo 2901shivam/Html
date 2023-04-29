@@ -26,6 +26,21 @@ function saveToLocalstorage(event){
     
     // showExpenseOntheScreen(myObject);
    }
+    window.addEventListener("DOMContentLoaded",()=>{
+      axios.get("https://crudcrud.com/api/119d6f851ce741f496d940a053c64ee1/appointmentData")
+      .then((response)=>{
+        console.log(response);
+
+        for(var i=0;i<response.data.length;i++){
+          showExpenseOntheScreen(response.data[i]);
+        }
+
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+
+    })
     function showExpenseOntheScreen(myObject){
      const parentElement=document.getElementById("list");
      const childElement=document.createElement('li');
