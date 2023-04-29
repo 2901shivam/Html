@@ -69,17 +69,36 @@ function saveToLocalstorage(event){
      const editButton=document.createElement('input');
      editButton.type='button';
      editButton.value='Edit';
-     editButton.addEventListener('click',function(){
-      //delete data from crud crud 
-      //delete data from the screen
-      //submit the edited data
-       localStorage.removeItem(myObject.email);
-       parentElement.removeChild(childElement);
-       document.getElementById("am").value=myObject.name;
-       document.getElementById("dm").value=myObject.email;
-       document.getElementById("ca").value=myObject.phoneNumber;
+    //  editButton.addEventListener('click',function(){
+    //   //delete data from crud crud 
+    //   //delete data from the screen
+    //   //submit the edited data
+    //    localStorage.removeItem(myObject.email);
+    //    parentElement.removeChild(childElement);
+    //    document.getElementById("am").value=myObject.name;
+    //    document.getElementById("dm").value=myObject.email;
+    //    document.getElementById("ca").value=myObject.phoneNumber;
  
-     })
+    //  })
+    editButton.onclick=()=>{
+
+      axios.delete(`https://crudcrud.com/api/dd446bc34723413ab0672e78634c6052/appointmentData/${user._id}`)
+      .then((response)=>{
+    //confirm(`DO you want to delete appointment????`)
+      parentElement.removeChild(childElement);
+        console.log(response.data[0]);
+        //window.location.reload();         
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+     // parentElement.removeChild(childElement);
+      document.getElementById("am").value=user.name;
+      document.getElementById("dm").value=user.email;
+      document.getElementById("ca").value=user.phoneNumber;
+ 
+
+    }
  
      childElement.appendChild(deleteButton);
      childElement.appendChild(editButton);
