@@ -14,10 +14,11 @@ function saveToLocalstorage(event){
  
     }
     // localStorage.setItem(email,JSON.stringify(myObject));
-    axios.post("https://crudcrud.com/api/119d6f851ce741f496d940a053c64ee1/appointmentData",myObject)
+    axios.post("https://crudcrud.com/api/dd446bc34723413ab0672e78634c6052/appointmentData",myObject)
     .then((response)=>{
+      alert(`Congrats! ${name} has been added!`)
         showExpenseOntheScreen(response.data);
-       console.log(response);
+       console.log(response.data);
     })
     .catch((err)=>{
         console.log(err);
@@ -27,9 +28,10 @@ function saveToLocalstorage(event){
     // showExpenseOntheScreen(myObject);
    }
     window.addEventListener("DOMContentLoaded",()=>{
-      axios.get("https://crudcrud.com/api/119d6f851ce741f496d940a053c64ee1/appointmentData")
+      axios.get("https://crudcrud.com/api/dd446bc34723413ab0672e78634c6052/appointmentData")
       .then((response)=>{
-        console.log(response);
+        
+        console.log(response.data[0]);
 
         for(var i=0;i<response.data.length;i++){
           showExpenseOntheScreen(response.data[i]);
@@ -41,24 +43,36 @@ function saveToLocalstorage(event){
       })
 
     })
-    function showExpenseOntheScreen(myObject){
+    function showExpenseOntheScreen(user){
      const parentElement=document.getElementById("list");
      const childElement=document.createElement('li');
     
-     childElement.textContent=myObject.name+'-'+myObject.email+'-'+myObject.phoneNumber;  
+     childElement.textContent=user.name+'-'+user.email+'-'+user.phoneNumber;  
      parentElement.appendChild(childElement);
      
      const deleteButton=document.createElement('input');
      deleteButton.type='button';
      deleteButton.value='Delete';
-     deleteButton.addEventListener('click',function(){
-         localStorage.removeItem(myObject.email);
-         parentElement.removeChild(childElement);
-     });
+     deleteButton.onclick=()=>{
+      axios.delete(`https://crudcrud.com/api/dd446bc34723413ab0672e78634c6052/appointmentData/${user._id}`)
+      .then((response)=>{
+    confirm(`DO you want to delete appointment????`)
+    parentElement.removeChild(childElement);
+        console.log(response.data[0]);
+        window.location.reload();         
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+          // localStorage.removeItem(myObject.email);
+     };
      const editButton=document.createElement('input');
      editButton.type='button';
      editButton.value='Edit';
      editButton.addEventListener('click',function(){
+      //delete data from crud crud 
+      //delete data from the screen
+      //submit the edited data
        localStorage.removeItem(myObject.email);
        parentElement.removeChild(childElement);
        document.getElementById("am").value=myObject.name;
